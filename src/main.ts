@@ -93,7 +93,6 @@ class Tokenizer {
           {
             startIndex: wrap.index + wrap[1].length,
             endIndex: wrap.index + wrap[1].length + wrap[2].length,
-            name: token.name,
             definition: token,
             content: wrap[2],
             wrappedContent: wrap[0],
