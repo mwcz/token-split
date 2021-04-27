@@ -1,10 +1,10 @@
 import {test, expect, describe} from "@jest/globals";
-import {createTokenizer} from "./main"
+import {createTokenSlicer} from "./main"
 
-describe("the createTokenizer function", () => {
+describe("the createTokenSlicer function", () => {
 
   test("exists", () => {
-    expect(createTokenizer).toBeInstanceOf(Function);
+    expect(createTokenSlicer).toBeInstanceOf(Function);
   });
 
   describe("tokenize function", () => {
@@ -16,7 +16,7 @@ describe("the createTokenizer function", () => {
         ]
       };
 
-      const tok = createTokenizer(tokConfig);
+      const tok = createTokenSlicer(tokConfig);
       const output = tok.tokenize("abc");
 
       expect(output).toStrictEqual({
@@ -51,7 +51,7 @@ describe("the createTokenizer function", () => {
         ]
       };
 
-      const tok = createTokenizer(tokConfig);
+      const tok = createTokenSlicer(tokConfig);
       const input = `\n        <!DOCTYPE html>\n        <html>\n          <head>\n            <!-- ONE -->\n            one\n            <!-- /ONE -->\n          </head>\n          <body>\n            <!-- TWO -->\n            two\n            <!-- /TWO -->\n            <!-- THREE -->\n            three\n            <!-- /THREE -->\n          </body>\n        </html>\n      `;
 
       const output = tok.tokenize(input);
@@ -110,7 +110,7 @@ describe("the createTokenizer function", () => {
         ]
       };
 
-      const tok = createTokenizer(tokConfig);
+      const tok = createTokenSlicer(tokConfig);
       const output = tok.tokenize("axbcdxe");
 
       expect(output).toStrictEqual({
@@ -145,7 +145,7 @@ describe("the createTokenizer function", () => {
         ]
       };
 
-      const tok = createTokenizer(tokConfig);
+      const tok = createTokenSlicer(tokConfig);
       const output = tok.tokenize("xz");
 
       expect(output).toStrictEqual({
@@ -170,7 +170,7 @@ describe("the createTokenizer function", () => {
         ]
       };
 
-      const tok = createTokenizer(tokConfig);
+      const tok = createTokenSlicer(tokConfig);
 
       expect(() => tok.tokenize("xz")).toThrowError();
 

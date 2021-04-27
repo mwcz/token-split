@@ -1,13 +1,13 @@
-# token-split
+# token-slice
 
-[![Build and test status](https://github.com/redhataccess/token-split/workflows/Lint%20and%20test/badge.svg)](https://github.com/redhataccess/token-split/actions?query=workflow%3A%22Build+and+test%22)
+[![Build and test status](https://github.com/redhataccess/token-slice/workflows/Lint%20and%20test/badge.svg)](https://github.com/redhataccess/token-slice/actions?query=workflow%3A%22Build+and+test%22)
 
-token-split is a small library for extracting text wrapped with arbitrary tokens.  Please do not use it for parsing HTML.
+token-slice is a small library for extracting text wrapped with arbitrary tokens.  Please do not use it for parsing HTML.
 
 ```js
-import { createTokenizer } from "token-split";
+import { createTokenSlicer } from "token-slice";
 
-const tok = createTokenizer({
+const tok = createTokenSlicer({
   tokens: [
     {
       name: "token1",
@@ -22,7 +22,7 @@ const output = tok.tokenize("abc");
 // output equals:
 {
   input: "abc",
-  config: /* copy of the config object passed into createTokenizer */,
+  config: /* copy of the config object passed into createTokenSlicer */,
   result: [
     {
       definition: { name: "test_token", start: "a", end: "c" },

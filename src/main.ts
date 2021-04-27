@@ -13,9 +13,9 @@ export interface TokenDefinition {
 }
 
 /**
- * Configuration values for creating a tokenizer.
+ * Configuration values for creating a token slicer.
  */
-export interface TokenizerConfig {
+export interface TokenSlicerConfig {
   /** An array of token definitions. */
   tokens: TokenDefinition[],
 }
@@ -23,12 +23,12 @@ export interface TokenizerConfig {
 /**
  * The output of a tokenization.
  */
-export interface TokenizationOutput {
+export interface TokenSlicerOutput {
   /** The original input string that was tokenized. */
   input: string,
 
   /** The token definition that was used for this tokenization. */
-  config: TokenizerConfig,
+  config: TokenSlicerConfig,
 
   /** The part you actually want: the tokenization results! */
   result: TokenResult[],
@@ -40,7 +40,7 @@ export interface TokenizationOutput {
 export interface TokenResult {
   /** The token definition used to create this result.  Use this to identify results in the [[TokenizationOutput.result]] array. */
   definition: TokenDefinition,
-  /** The token value found _between_ the [[TokenDefinition.start]] and [[TokenDefinition.end]] values that were passed to [[createTokenizer]]. */
+  /** The token value found _between_ the [[TokenDefinition.start]] and [[TokenDefinition.end]] values that were passed to [[createTokenSlicer]]. */
   inner: TokenValue,
   outer: TokenValue,
 }
@@ -58,19 +58,19 @@ export interface TokenValue {
 }
 
 /**
- * The tokenizer class, pass it a [[TokenizerConfig]] with your token definitions, then run [[tokenize]] on input.  Recommend instantiating it with [[createTokenizer]] but may also be instantiated with `new Tokenizer`.
+ * The token slicer class, pass it a [[TokenSlicerConfig]] with your token definitions, then run [[tokenize]] on input.  Recommend instantiating it with [[createTokenSlicer]] but may also be instantiated with `new TokenSlicer`.
  */
-export class Tokenizer {
-  readonly config: TokenizerConfig;
+export class TokenSlicer {
+  readonly config: TokenSlicerConfig;
 
-  constructor(config: TokenizerConfig) {
+  constructor(config: TokenSlicerConfig) {
     this.config = config;
   }
 
   /**
    * Apply the tokenization definitions to an input string.
    */
-  tokenize(input: string): TokenizationOutput {
+  tokenize(input: string): TokenSlicerOutput {
 
     const result: TokenResult[] = [];
 
@@ -123,8 +123,8 @@ export class Tokenizer {
 }
 
 /**
- * Create a reusable tokenizer.  Once created, you can pass input strings into it through its `tokenize` function.
+ * Create a reusable token slicer.  Once created, you can pass input strings into it through its `tokenize` function.
  */
-export function createTokenizer(config: TokenizerConfig): Tokenizer {
-  return new Tokenizer(config);
+export function createTokenSlicer(config: TokenSlicerConfig): TokenSlicer {
+  return new TokenSlicer(config);
 }
