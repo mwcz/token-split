@@ -25,12 +25,16 @@ describe("the createTokenizer function", () => {
         result: [
           {
             definition: {name: "test_token", start: "a", end: "c"},
-            content: "b",
-            startIndex: 1,
-            endIndex: 2,
-            wrappedContent: "abc",
-            wrappedStartIndex: 0,
-            wrappedEndIndex: 3,
+            inner: {
+              content: "b",
+              startIndex: 1,
+              endIndex: 2,
+            },
+            outer: {
+              content: "abc",
+              startIndex: 0,
+              endIndex: 3,
+            },
           }
         ]
       });
@@ -48,24 +52,7 @@ describe("the createTokenizer function", () => {
       };
 
       const tok = createTokenizer(tokConfig);
-      const input = `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <!-- ONE -->
-            one
-            <!-- /ONE -->
-          </head>
-          <body>
-            <!-- TWO -->
-            two
-            <!-- /TWO -->
-            <!-- THREE -->
-            three
-            <!-- /THREE -->
-          </body>
-        </html>
-      `;
+      const input = `\n        <!DOCTYPE html>\n        <html>\n          <head>\n            <!-- ONE -->\n            one\n            <!-- /ONE -->\n          </head>\n          <body>\n            <!-- TWO -->\n            two\n            <!-- /TWO -->\n            <!-- THREE -->\n            three\n            <!-- /THREE -->\n          </body>\n        </html>\n      `;
 
       const output = tok.tokenize(input);
 
@@ -75,28 +62,40 @@ describe("the createTokenizer function", () => {
         result: [
           {
             definition: {name: "one", start: "<!-- ONE -->", end: "<!-- /ONE -->"},
-            content: "\n            one\n            ",
-            startIndex: 81,
-            endIndex: 110,
-            wrappedContent: "<!-- ONE -->\n            one\n            <!-- /ONE -->",
-            wrappedStartIndex: 69,
-            wrappedEndIndex: 123,
+            inner: {
+              content: "\n            one\n            ",
+              startIndex: 81,
+              endIndex: 110,
+            },
+            outer: {
+              content: "<!-- ONE -->\n            one\n            <!-- /ONE -->",
+              startIndex: 69,
+              endIndex: 123,
+            },
           }, {
             definition: {name: "two", start: "<!-- TWO -->", end: "<!-- /TWO -->"},
-            content: "\n            two\n            ",
-            startIndex: 183,
-            endIndex: 212,
-            wrappedContent: "<!-- TWO -->\n            two\n            <!-- /TWO -->",
-            wrappedStartIndex: 171,
-            wrappedEndIndex: 225,
+            inner: {
+              content: "\n            two\n            ",
+              startIndex: 183,
+              endIndex: 212,
+            },
+            outer: {
+              content: "<!-- TWO -->\n            two\n            <!-- /TWO -->",
+              startIndex: 171,
+              endIndex: 225,
+            },
           }, {
             definition: {name: "three", start: "<!-- THREE -->", end: "<!-- /THREE -->"},
-            content: "\n            three\n            ",
-            startIndex: 252,
-            endIndex: 283,
-            wrappedContent: "<!-- THREE -->\n            three\n            <!-- /THREE -->",
-            wrappedStartIndex: 238,
-            wrappedEndIndex: 298,
+            inner: {
+              content: "\n            three\n            ",
+              startIndex: 252,
+              endIndex: 283,
+            },
+            outer: {
+              content: "<!-- THREE -->\n            three\n            <!-- /THREE -->",
+              startIndex: 238,
+              endIndex: 298,
+            },
           }
         ]
       });
@@ -120,12 +119,16 @@ describe("the createTokenizer function", () => {
         result: [
           {
             definition: {name: "regex_tokens", start: "a.b", end: "d.e"},
-            content: "c",
-            startIndex: 3,
-            endIndex: 4,
-            wrappedContent: "axbcdxe",
-            wrappedStartIndex: 0,
-            wrappedEndIndex: 7,
+            inner: {
+              content: "c",
+              startIndex: 3,
+              endIndex: 4,
+            },
+            outer: {
+              content: "axbcdxe",
+              startIndex: 0,
+              endIndex: 7,
+            },
           }
         ]
       });

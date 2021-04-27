@@ -1,14 +1,14 @@
 /**
- * Configuration options for a single token.  Note that `start` and `end` are combined into a new RegExp, and their flags are combined.  For example, using `/i` on either `start` or `end` is the same as using `/i` on both.
+ * Configuration options for a single token.  Note that [[start]] and [[end]] are combined into a new RegExp, and their flags are combined.  For example, using `/i` on either [[start]] or [[end]] is the same as using `/i` on both.
  */
 export interface TokenDefinition {
-  /** The starting token, either a string or regex. */
+  /** The starting token, either a string or regex that is expected to occur in the input string. */
   start: string | RegExp,
 
-  /** The ending token, either a string or regex. */
+  /** The ending token, either a string or regex that is expected to occur in the input string. */
   end: string | RegExp,
 
-  /** A name to identify this token in the `result` array. */
+  /** A name to identify this token in the [[TokenizationOutput.result]] array. */
   name?: string,
 }
 
@@ -21,9 +21,9 @@ export interface TokenizerConfig {
 }
 
 /**
- * The result of a tokenization.
+ * The output of a tokenization.
  */
-export interface TokenizationResult {
+export interface TokenizationOutput {
   /** The original input string that was tokenized. */
   input: string,
 
@@ -38,37 +38,44 @@ export interface TokenizationResult {
  * The resulting match a single token definition.
  */
 export interface TokenResult {
-  /** The index into the original source string where the inner content (between `start` and `end`) begins. */
-  startIndex: number,
-  /** The index into the original source string where the inner content (between `start` and `end`) ends. */
-  endIndex: number,
-  /** The token definition used to create this result.  Use this to identify results in the `result` array. */
+  /** The token definition used to create this result.  Use this to identify results in the [[TokenizationOutput.result]] array. */
   definition: TokenDefinition,
-  /** The content between the `start` and `end` tokens.  For content including `start` and `end`, use `wrappedContent`. */
-  content: string,
-  /** The matched content including the `start` and `end` tokens.  For content without `start` and `end`, use `content`. */
-  wrappedContent: string,
-  /** The index into the original source string where the `start` content (between `start` and `end`) begins. */
-  wrappedStartIndex: number,
-  /** The index into the original source string where the inner content (between `start` and `end`) ends. */
-  wrappedEndIndex: number,
+  /** The token value found _between_ the [[TokenDefinition.start]] and [[TokenDefinition.end]] values that were passed to [[createTokenizer]]. */
+  inner: TokenValue,
+  outer: TokenValue,
 }
 
-class Tokenizer {
-  #config: TokenizerConfig;
+/**
+ * The resulting match a single token definition.
+ */
+export interface TokenValue {
+  /** The index into the original source string where this token begins. */
+  startIndex: number,
+  /** The index into the original source string where this token ends. */
+  endIndex: number,
+  /** The slice of text from the original source string that matched this token. */
+  content: string,
+}
+
+/**
+ * The tokenizer class, pass it a [[TokenizerConfig]] with your token definitions, then run [[tokenize]] on input.  Recommend instantiating it with [[createTokenizer]] but may also be instantiated with `new Tokenizer`.
+ */
+export class Tokenizer {
+  readonly config: TokenizerConfig;
 
   constructor(config: TokenizerConfig) {
-    this.#config = config;
+    this.config = config;
   }
 
   /**
-   * Tokenize a string.
+   * Apply the tokenization definitions to an input string.
    */
-  tokenize(input: string): TokenizationResult {
+  tokenize(input: string): TokenizationOutput {
 
     const result: TokenResult[] = [];
 
-    for (const token of this.#config.tokens) {
+    // TODO move this setup code (everything up to but excluding `exec`) into the constructor
+    for (const token of this.config.tokens) {
       const reFlags = ["s"];
 
       if (token.start instanceof RegExp) {
@@ -91,13 +98,17 @@ class Tokenizer {
       if (wrap && wrap.length === 4) {
         result.push(
           {
-            startIndex: wrap.index + wrap[1].length,
-            endIndex: wrap.index + wrap[1].length + wrap[2].length,
             definition: token,
-            content: wrap[2],
-            wrappedContent: wrap[0],
-            wrappedStartIndex: wrap.index,
-            wrappedEndIndex: wrap.index + wrap[0].length,
+            inner: {
+              startIndex: wrap.index + wrap[1].length,
+              endIndex: wrap.index + wrap[1].length + wrap[2].length,
+              content: wrap[2],
+            },
+            outer: {
+              content: wrap[0],
+              startIndex: wrap.index,
+              endIndex: wrap.index + wrap[0].length,
+            },
           }
         );
       }
@@ -106,7 +117,7 @@ class Tokenizer {
     return {
       input,
       result,
-      config: this.#config,
+      config: this.config,
     };
   }
 }
