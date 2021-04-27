@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>token-split</title>
-	<meta name="description" content="Documentation for token-split">
+	<title>token-slice</title>
+	<meta name="description" content="Documentation for token-slice">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<script async src="assets/js/search.js" id="search-script"></script>
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">token-split</a>
+					<a href="index.html" class="title">token-slice</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -50,7 +50,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<h1>token-split</h1>
+			<h1>token-slice</h1>
 		</div>
 	</div>
 </header>
@@ -64,7 +64,7 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class"><a href="classes/tokenizer.html" class="tsd-kind-icon">Tokenizer</a></li>
+								<li class="tsd-kind-class"><a href="classes/tokenslicer.html" class="tsd-kind-icon">Token<wbr>Slicer</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -72,15 +72,15 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface"><a href="interfaces/tokendefinition.html" class="tsd-kind-icon">Token<wbr>Definition</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/tokenresult.html" class="tsd-kind-icon">Token<wbr>Result</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/tokenslicerconfig.html" class="tsd-kind-icon">Token<wbr>Slicer<wbr>Config</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/tokensliceroutput.html" class="tsd-kind-icon">Token<wbr>Slicer<wbr>Output</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/tokenvalue.html" class="tsd-kind-icon">Token<wbr>Value</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/tokenizationoutput.html" class="tsd-kind-icon">Tokenization<wbr>Output</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/tokenizerconfig.html" class="tsd-kind-icon">Tokenizer<wbr>Config</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function"><a href="modules.html#createtokenizer" class="tsd-kind-icon">create<wbr>Tokenizer</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#createtokenslicer" class="tsd-kind-icon">create<wbr>Token<wbr>Slicer</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,30 +89,30 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="createtokenizer" class="tsd-anchor"></a>
-					<h3>create<wbr>Tokenizer</h3>
+					<a name="createtokenslicer" class="tsd-anchor"></a>
+					<h3>create<wbr>Token<wbr>Slicer</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Tokenizer<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="interfaces/tokenizerconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">TokenizerConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/tokenizer.html" class="tsd-signature-type" data-tsd-kind="Class">Tokenizer</a></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Token<wbr>Slicer<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="interfaces/tokenslicerconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">TokenSlicerConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/tokenslicer.html" class="tsd-signature-type" data-tsd-kind="Class">TokenSlicer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/redhataccess/token-split/blob/0d386cc/src/main.ts#L128">main.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/redhataccess/token-split/blob/0abde7a/src/main.ts#L128">main.ts:128</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Create a reusable tokenizer.  Once created, you can pass input strings into it through its <code>tokenize</code> function.</p>
+									<p>Create a reusable token slicer.  Once created, you can pass input strings into it through its <code>tokenize</code> function.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>config: <a href="interfaces/tokenizerconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">TokenizerConfig</a></h5>
+									<h5>config: <a href="interfaces/tokenslicerconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">TokenSlicerConfig</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="classes/tokenizer.html" class="tsd-signature-type" data-tsd-kind="Class">Tokenizer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="classes/tokenslicer.html" class="tsd-signature-type" data-tsd-kind="Class">TokenSlicer</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -129,7 +129,7 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="classes/tokenizer.html" class="tsd-kind-icon">Tokenizer</a>
+						<a href="classes/tokenslicer.html" class="tsd-kind-icon">Token<wbr>Slicer</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/tokendefinition.html" class="tsd-kind-icon">Token<wbr>Definition</a>
@@ -138,16 +138,16 @@
 						<a href="interfaces/tokenresult.html" class="tsd-kind-icon">Token<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/tokenslicerconfig.html" class="tsd-kind-icon">Token<wbr>Slicer<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/tokensliceroutput.html" class="tsd-kind-icon">Token<wbr>Slicer<wbr>Output</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/tokenvalue.html" class="tsd-kind-icon">Token<wbr>Value</a>
 					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/tokenizationoutput.html" class="tsd-kind-icon">Tokenization<wbr>Output</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/tokenizerconfig.html" class="tsd-kind-icon">Tokenizer<wbr>Config</a>
-					</li>
 					<li class=" tsd-kind-function">
-						<a href="modules.html#createtokenizer" class="tsd-kind-icon">create<wbr>Tokenizer</a>
+						<a href="modules.html#createtokenslicer" class="tsd-kind-icon">create<wbr>Token<wbr>Slicer</a>
 					</li>
 				</ul>
 			</nav>
