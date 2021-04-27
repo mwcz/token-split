@@ -1,37 +1,56 @@
 /**
- * Configuration options for a single token.
+ * Configuration options for a single token.  Note that `start` and `end` are combined into a new RegExp, and their flags are combined.  For example, using `/i` on either `start` or `end` is the same as using `/i` on both.
  */
-export interface TokenConfig {
+export interface TokenDefinition {
+  /** The starting token, either a string or regex. */
   start: string | RegExp,
+
+  /** The ending token, either a string or regex. */
   end: string | RegExp,
-  name: string,
+
+  /** A name to identify this token in the `result` array. */
+  name?: string,
 }
 
 /**
- * Configuration options for tokenizers.
+ * Configuration values for creating a tokenizer.
  */
 export interface TokenizerConfig {
-  // configuration for the tokens to find
-  tokens: TokenConfig[],
+  /** An array of token definitions. */
+  tokens: TokenDefinition[],
 }
 
 /**
  * The result of a tokenization.
  */
-export interface TokenizerResult {
-  input: string, // the original input string
-  config: TokenizerConfig, // the configuration that was used for this tokenization
+export interface TokenizationResult {
+  /** The original input string that was tokenized. */
+  input: string,
+
+  /** The token definition that was used for this tokenization. */
+  config: TokenizerConfig,
+
+  /** The part you actually want: the tokenization results! */
   result: TokenResult[],
 }
 
+/**
+ * The resulting match a single token definition.
+ */
 export interface TokenResult {
+  /** The index into the original source string where the inner content (between `start` and `end`) begins. */
   startIndex: number,
+  /** The index into the original source string where the inner content (between `start` and `end`) ends. */
   endIndex: number,
-  name: string,
-  config?: TokenizerConfig,
+  /** The token definition used to create this result.  Use this to identify results in the `result` array. */
+  definition: TokenDefinition,
+  /** The content between the `start` and `end` tokens.  For content including `start` and `end`, use `wrappedContent`. */
   content: string,
+  /** The matched content including the `start` and `end` tokens.  For content without `start` and `end`, use `content`. */
   wrappedContent: string,
+  /** The index into the original source string where the `start` content (between `start` and `end`) begins. */
   wrappedStartIndex: number,
+  /** The index into the original source string where the inner content (between `start` and `end`) ends. */
   wrappedEndIndex: number,
 }
 
@@ -45,7 +64,7 @@ class Tokenizer {
   /**
    * Tokenize a string.
    */
-  tokenize(input: string): TokenizerResult {
+  tokenize(input: string): TokenizationResult {
 
     const result: TokenResult[] = [];
 
@@ -61,16 +80,21 @@ class Tokenizer {
         token.end = token.end.source;
       }
 
+      if (token.start.length === 0 || token.end.length === 0) {
+        throw new Error("token definitions cannot contain a 'start' or 'end' property with zero length");
+      }
+
       const reWrap = new RegExp(`(${token.start})(.*?)(${token.end})`, reFlags.join(""));
 
       const wrap = reWrap.exec(input);
 
-      if (wrap && wrap[0]) {
+      if (wrap && wrap.length === 4) {
         result.push(
           {
             startIndex: wrap.index + wrap[1].length,
             endIndex: wrap.index + wrap[1].length + wrap[2].length,
             name: token.name,
+            definition: token,
             content: wrap[2],
             wrappedContent: wrap[0],
             wrappedStartIndex: wrap.index,
@@ -88,6 +112,9 @@ class Tokenizer {
   }
 }
 
+/**
+ * Create a reusable tokenizer.  Once created, you can pass input strings into it through its `tokenize` function.
+ */
 export function createTokenizer(config: TokenizerConfig): Tokenizer {
   return new Tokenizer(config);
 }
