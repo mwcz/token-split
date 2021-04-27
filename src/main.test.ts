@@ -141,9 +141,9 @@ describe("the createTokenizer function", () => {
 
       const tokConfig = {
         tokens: [
-          {name: "cant", start: /a/, end: /b/}
-          {name: "wont", start: /x/, end: /y/}
-          {name: "never_will", start: /z/, end: /x/}
+          {name: "cant", start: /a/, end: /b/},
+          {name: "wont", start: /x/, end: /y/},
+          {name: "never_will", start: /z/, end: /x/},
         ]
       };
 
