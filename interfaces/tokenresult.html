@@ -87,13 +87,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tokenresult.html#content" class="tsd-kind-icon">content</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tokenresult.html#definition" class="tsd-kind-icon">definition</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tokenresult.html#endindex" class="tsd-kind-icon">end<wbr>Index</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tokenresult.html#startindex" class="tsd-kind-icon">start<wbr>Index</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tokenresult.html#wrappedcontent" class="tsd-kind-icon">wrapped<wbr>Content</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tokenresult.html#wrappedendindex" class="tsd-kind-icon">wrapped<wbr>End<wbr>Index</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tokenresult.html#wrappedstartindex" class="tsd-kind-icon">wrapped<wbr>Start<wbr>Index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tokenresult.html#inner" class="tsd-kind-icon">inner</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tokenresult.html#outer" class="tsd-kind-icon">outer</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,109 +98,44 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="content" class="tsd-anchor"></a>
-					<h3>content</h3>
-					<div class="tsd-signature tsd-kind-icon">content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/redhataccess/token-split/blob/f58dcc4/src/main.ts#L48">main.ts:48</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The content between the <code>start</code> and <code>end</code> tokens.  For content including <code>start</code> and <code>end</code>, use <code>wrappedContent</code>.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="definition" class="tsd-anchor"></a>
 					<h3>definition</h3>
 					<div class="tsd-signature tsd-kind-icon">definition<span class="tsd-signature-symbol">:</span> <a href="tokendefinition.html" class="tsd-signature-type" data-tsd-kind="Interface">TokenDefinition</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/redhataccess/token-split/blob/f58dcc4/src/main.ts#L46">main.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/redhataccess/token-split/blob/0d386cc/src/main.ts#L42">main.ts:42</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The token definition used to create this result.  Use this to identify results in the <code>result</code> array.</p>
+							<p>The token definition used to create this result.  Use this to identify results in the <a href="tokenizationoutput.html#result">TokenizationOutput.result</a> array.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="endindex" class="tsd-anchor"></a>
-					<h3>end<wbr>Index</h3>
-					<div class="tsd-signature tsd-kind-icon">end<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="inner" class="tsd-anchor"></a>
+					<h3>inner</h3>
+					<div class="tsd-signature tsd-kind-icon">inner<span class="tsd-signature-symbol">:</span> <a href="tokenvalue.html" class="tsd-signature-type" data-tsd-kind="Interface">TokenValue</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/redhataccess/token-split/blob/f58dcc4/src/main.ts#L44">main.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/redhataccess/token-split/blob/0d386cc/src/main.ts#L44">main.ts:44</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The index into the original source string where the inner content (between <code>start</code> and <code>end</code>) ends.</p>
+							<p>The token value found <em>between</em> the <a href="tokendefinition.html#start">TokenDefinition.start</a> and <a href="tokendefinition.html#end">TokenDefinition.end</a> values that were passed to <a href="../modules.html#createtokenizer">createTokenizer</a>.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="startindex" class="tsd-anchor"></a>
-					<h3>start<wbr>Index</h3>
-					<div class="tsd-signature tsd-kind-icon">start<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="outer" class="tsd-anchor"></a>
+					<h3>outer</h3>
+					<div class="tsd-signature tsd-kind-icon">outer<span class="tsd-signature-symbol">:</span> <a href="tokenvalue.html" class="tsd-signature-type" data-tsd-kind="Interface">TokenValue</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/redhataccess/token-split/blob/f58dcc4/src/main.ts#L42">main.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/redhataccess/token-split/blob/0d386cc/src/main.ts#L45">main.ts:45</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The index into the original source string where the inner content (between <code>start</code> and <code>end</code>) begins.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="wrappedcontent" class="tsd-anchor"></a>
-					<h3>wrapped<wbr>Content</h3>
-					<div class="tsd-signature tsd-kind-icon">wrapped<wbr>Content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/redhataccess/token-split/blob/f58dcc4/src/main.ts#L50">main.ts:50</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The matched content including the <code>start</code> and <code>end</code> tokens.  For content without <code>start</code> and <code>end</code>, use <code>content</code>.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="wrappedendindex" class="tsd-anchor"></a>
-					<h3>wrapped<wbr>End<wbr>Index</h3>
-					<div class="tsd-signature tsd-kind-icon">wrapped<wbr>End<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/redhataccess/token-split/blob/f58dcc4/src/main.ts#L54">main.ts:54</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The index into the original source string where the inner content (between <code>start</code> and <code>end</code>) ends.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="wrappedstartindex" class="tsd-anchor"></a>
-					<h3>wrapped<wbr>Start<wbr>Index</h3>
-					<div class="tsd-signature tsd-kind-icon">wrapped<wbr>Start<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/redhataccess/token-split/blob/f58dcc4/src/main.ts#L52">main.ts:52</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The index into the original source string where the <code>start</code> content (between <code>start</code> and <code>end</code>) begins.</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -218,6 +149,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="../classes/tokenizer.html" class="tsd-kind-icon">Tokenizer</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="tokendefinition.html" class="tsd-kind-icon">Token<wbr>Definition</a>
 					</li>
@@ -227,32 +161,23 @@
 						<a href="tokenresult.html" class="tsd-kind-icon">Token<wbr>Result</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="tokenresult.html#content" class="tsd-kind-icon">content</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="tokenresult.html#definition" class="tsd-kind-icon">definition</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="tokenresult.html#endindex" class="tsd-kind-icon">end<wbr>Index</a>
+								<a href="tokenresult.html#inner" class="tsd-kind-icon">inner</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="tokenresult.html#startindex" class="tsd-kind-icon">start<wbr>Index</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="tokenresult.html#wrappedcontent" class="tsd-kind-icon">wrapped<wbr>Content</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="tokenresult.html#wrappedendindex" class="tsd-kind-icon">wrapped<wbr>End<wbr>Index</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="tokenresult.html#wrappedstartindex" class="tsd-kind-icon">wrapped<wbr>Start<wbr>Index</a>
+								<a href="tokenresult.html#outer" class="tsd-kind-icon">outer</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="tokenizationresult.html" class="tsd-kind-icon">Tokenization<wbr>Result</a>
+						<a href="tokenvalue.html" class="tsd-kind-icon">Token<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="tokenizationoutput.html" class="tsd-kind-icon">Tokenization<wbr>Output</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="tokenizerconfig.html" class="tsd-kind-icon">Tokenizer<wbr>Config</a>
@@ -269,6 +194,11 @@
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
