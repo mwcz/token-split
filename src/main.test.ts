@@ -163,12 +163,12 @@ describe("the createTokenizer function", () => {
 
       const tokConfig = {
         tokens: [
-          {name: "no_empty_start_str", start: "", end: "b"}
-          {name: "no_empty_end_str", start: "a", end: ""}
-          {name: "no_empty_both_str", start: "", end: ""}
-          {name: "no_empty_start_regex", start: new RegExp(""), end: new RegExp("b")}
-          {name: "no_empty_end_regex", start: new RegExp("a"), end: new RegExp("")}
-          {name: "no_empty_both_regex", start: new RegExp(""), end: new RegExp("")}
+          {name: "no_empty_start_str", start: "", end: "b"},
+          {name: "no_empty_end_str", start: "a", end: ""},
+          {name: "no_empty_both_str", start: "", end: ""},
+          {name: "no_empty_start_regex", start: new RegExp(""), end: new RegExp("b")},
+          {name: "no_empty_end_regex", start: new RegExp("a"), end: new RegExp("")},
+          {name: "no_empty_both_regex", start: new RegExp(""), end: new RegExp("")},
         ]
       };
 
