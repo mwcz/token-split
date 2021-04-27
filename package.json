@@ -8,7 +8,7 @@
   "main": "./dist/tsc/main.js",
   "exports": {
     "import": "./dist/esm/main.js",
-    "require": "./dist/cjs/main.js"
+    "require": "./dist/cjs/main.cjs"
   },
   "type": "module",
   "types": "./dist/tsc/main.d.ts",
@@ -23,9 +23,9 @@
     "esbuild-esm": "esbuild src/main.ts --platform=neutral --bundle --format=esm --minify --sourcemap=external --outfile=dist/esm/main.js",
     "esbuild-esm:dev": "esbuild src/main.ts --platform=neutral --bundle --format=esm --outfile=dist/esm/main.js",
     "esbuild-esm:watch": "esbuild src/main.ts --platform=neutral --bundle --format=esm --watch --outfile=dist/esm/main.js",
-    "esbuild-cjs": "esbuild src/main.ts --bundle --platform=node --format=cjs --minify --sourcemap=external --outfile=dist/cjs/main.js",
-    "esbuild-cjs:dev": "esbuild src/main.ts --bundle --platform=node --format=cjs --sourcemap=external --outfile=dist/cjs/main.js",
-    "esbuild-cjs:watch": "esbuild src/main.ts --bundle --platform=node --format=cjs --watch --sourcemap=external --outfile=dist/cjs/main.js"
+    "esbuild-cjs": "esbuild src/main.ts --bundle --platform=node --format=cjs --minify --sourcemap=external --outfile=dist/cjs/main.cjs",
+    "esbuild-cjs:dev": "esbuild src/main.ts --bundle --platform=node --format=cjs --sourcemap=external --outfile=dist/cjs/main.cjs",
+    "esbuild-cjs:watch": "esbuild src/main.ts --bundle --platform=node --format=cjs --watch --sourcemap=external --outfile=dist/cjs/main.cjs"
   },
   "devDependencies": {
     "@types/jest": "^26.0.21",
