@@ -24,7 +24,6 @@ describe("the createTokenizer function", () => {
         config: tokConfig,
         result: [
           {
-            name: "test_token",
             definition: {name: "test_token", start: "a", end: "c"},
             content: "b",
             startIndex: 1,
@@ -75,7 +74,6 @@ describe("the createTokenizer function", () => {
         config: tokConfig,
         result: [
           {
-            name: "one",
             definition: {name: "one", start: "<!-- ONE -->", end: "<!-- /ONE -->"},
             content: "\n            one\n            ",
             startIndex: 81,
@@ -84,7 +82,6 @@ describe("the createTokenizer function", () => {
             wrappedStartIndex: 69,
             wrappedEndIndex: 123,
           }, {
-            name: "two",
             definition: {name: "two", start: "<!-- TWO -->", end: "<!-- /TWO -->"},
             content: "\n            two\n            ",
             startIndex: 183,
@@ -93,7 +90,6 @@ describe("the createTokenizer function", () => {
             wrappedStartIndex: 171,
             wrappedEndIndex: 225,
           }, {
-            name: "three",
             definition: {name: "three", start: "<!-- THREE -->", end: "<!-- /THREE -->"},
             content: "\n            three\n            ",
             startIndex: 252,
@@ -123,7 +119,6 @@ describe("the createTokenizer function", () => {
         config: tokConfig,
         result: [
           {
-            name: "regex_tokens",
             definition: {name: "regex_tokens", start: "a.b", end: "d.e"},
             content: "c",
             startIndex: 3,
