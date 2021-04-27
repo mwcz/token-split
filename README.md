@@ -25,8 +25,7 @@ const output = tok.tokenize("abc");
   config: /* copy of the config object passed into createTokenizer */,
   result: [
     {
-      name: "test_token",
-      definition: {name: "test_token", start: "a", end: "c"},
+      definition: { name: "test_token", start: "a", end: "c" },
       content: "b",
       startIndex: 1,
       endIndex: 2,
